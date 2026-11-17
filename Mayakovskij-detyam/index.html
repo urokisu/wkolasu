@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>В.Маяковский «ДЕТЯМ», для начальной школы</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="keywords" content="советский учебник, СССР, школа, математика, природоведение, русский язык, советские учебники, чтение, Mаяковский, начальная школа">
+<meta name="description" content="Сетевой некоммерческий образовательный ресурс републикаций материалов из учебников советского периода">
+<style type="text/css">
+body {zoom: 80%;}
+</style>
+<script type="text/javascript">
+var pg = 0;
+var min = 0;
+var max = 111;
+var prefix = "";
+var suffix = ".jpg";
+function openBook() {
+	var s = document.getElementById("slider");
+	s.min = min;
+	s.max = max;
+	hashGo();
+	s.value = pg;
+}
+function hashGo() {
+	var hash = window.location.hash;
+	if (hash) {
+		pg = hash.substring(1) * 1;
+	}
+	turnPage();
+}
+function next() {
+	pg+=2;
+	if (pg > max) {
+		pg = max;
+	} else {
+		document.getElementById("slider").value = pg;
+		turnPage();
+	}
+}
+function prev() {
+	pg-=2;
+	if (pg < min) {
+		pg = min;
+	} else {
+		document.getElementById("slider").value = pg;
+		turnPage();
+	}
+}
+function slide(val) {
+	pg = val * 1;
+	turnPage();
+}
+function turnPage() {
+	document.getElementById("pageA").src = prefix + pg + suffix;
+	document.getElementById("pageB").src = prefix + (pg + 1) + suffix;
+}
+function pad0(nr) {
+	var a = nr;
+	if (nr < 100) {
+		a = "0" + a;
+	}
+	if (nr < 10) {
+		a = "0" + a;
+	}
+	return a;
+}
+function pageScroll(event) {
+	var dir = event.deltaY;
+	if (dir > 0) {
+		prev();
+	} else {
+		next();
+	}
+	turnPage();
+}
+
+</script>
+</head>
+<body onload="openBook()" onhashchange="hashGo()">
+<div style="border-left: 1px solid; padding: 2px; float: left; height: 820px;">
+	<img id="pageA"  src="" onclick="prev()" />
+</div>
+<div style="border-right: 1px solid; padding: 2px; float: left; height: 700px;">
+	<img id="pageB" src="" onclick="next()" style="" />
+</div>
+<input id="slider" type="range" style="width: 100%" onchange="slide(this.value)" />
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>РУССКАЯ РЕЧЬ В КАРТИНКАХ, часть вторая</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<style type="text/css">
+body {zoom: 90%;}
+</style>
+<script type="text/javascript">
+var pg = 2;
+var min = 2;
+var max = 175;
+var prefix = "";
+var suffix = ".jpg";
+function openBook() {
+	var s = document.getElementById("slider");
+	s.min = min;
+	s.max = max;
+	s.value = pg;
+	turnPage();
+}
+function next() {
+	pg+=2;
+	if (pg > max) {
+		pg = max;
+	} else {
+		document.getElementById("slider").value = pg;
+		turnPage();
+	}
+}
+function prev() {
+	pg-=2;
+	if (pg < min) {
+		pg = min;
+	} else {
+		document.getElementById("slider").value = pg;
+		turnPage();
+	}
+}
+function slide(val) {
+	pg = val * 1;
+	turnPage();
+}
+function turnPage() {
+	document.getElementById("pageA").src = prefix + pg + suffix;
+	document.getElementById("pageB").src = prefix + (pg + 1) + suffix;
+}
+function pad0(nr) {
+	var a = nr;
+	if (nr < 100) {
+		a = "0" + a;
+	}
+	if (nr < 10) {
+		a = "0" + a;
+	}
+	return a;
+}
+</script>
+</head>
+<body onload="openBook()">
+<div style="border-left: 1px solid; padding: 2px; float: left; height: 680px;">
+	<img id="pageA" src="" onclick="prev()" />
+</div>
+<div style="border-right: 1px solid; padding: 2px; float: left; height: 680px;">
+	<img id="pageB" src="" onclick="next()" style="" />
+</div>
+<input id="slider" type="range" style="width: 100%" onchange="slide(this.value)" />
+</body>
+</html>
